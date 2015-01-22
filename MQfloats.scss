@@ -1,0 +1,53 @@
+
+// Media Query variables. Default set to Bootstrap's breakpoints.
+
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1200px;
+
+$float-directions: left, right;
+$float-sizes: sm $screen-sm, md $screen-md, lg $screen-lg;
+
+// Since you can't extend placeholders in media queries, this is the best way I 
+//can think of to group .pull-#{$direction}-#{$size} together in the same MQ
+@mixin floats($float-directions, $float-sizes) {
+
+  %float-none {
+    float: none;
+  }
+  %float-left {
+    float: left;
+  }
+  %float-right {
+    float: right;
+  }
+  
+  @each $direction in $float-directions {
+    //Stay floated even at smallest screen size. Not necessary, since Bootstrap's
+    //pull-right/left classes do this anyways. Included simply for consistency
+   .float-#{$direction}-xs {
+     @extend %float-#{$direction}
+   }
+   // Go through both elements in $float-sizes and set appropriately named default floats to none
+    .float-#{$direction} {
+      @each $size, $number in $float-sizes {
+        &-#{$size} {
+          @extend %float-none;
+        }
+      }
+    }
+  }
+  
+  // Go through each $size to set media query breakpoints with appropriate class names.
+  @each $size, $number in $float-sizes {
+    @media (min-width: #{$number}) {
+      @each $direction in $float-directions {
+        .float-#{$direction}-#{$size} {
+          float: $direction;
+        }
+      }
+    }
+  }
+}
+
+@include floats($float-directions, $float-sizes);

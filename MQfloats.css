@@ -1,0 +1,29 @@
+.float-left-sm, .float-left-md, .float-left-lg, .float-right-sm, .float-right-md, .float-right-lg {
+  float: none; }
+
+.float-left-xs {
+  float: left; }
+
+.float-right-xs {
+  float: right; }
+
+@media (min-width: 768px) {
+  .float-left-sm {
+    float: left; }
+
+  .float-right-sm {
+    float: right; } }
+@media (min-width: 992px) {
+  .float-left-md {
+    float: left; }
+
+  .float-right-md {
+    float: right; } }
+@media (min-width: 1200px) {
+  .float-left-lg {
+    float: left; }
+
+  .float-right-lg {
+    float: right; } }
+
+/*# sourceMappingURL=MQfloats.css.map */
